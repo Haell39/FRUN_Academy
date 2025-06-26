@@ -1,8 +1,7 @@
 <?php
-// Tela-Inicio/tela-inicio.php
+// F-RUM-ACADEMIA/Tela-Inicio/tela-inicio.php
 
-session_start(); // Inicia a sessão (embora esta página possa não usar diretamente, é boa prática para o contexto global)
-
+// AVISO: session_start() foi removido daqui porque já é chamado no index.php
 // Esta página é a que é incluída pelo index.php (o roteador) quando a rota 'Tela-Inicio' é acessada.
 // Não há necessidade de includes de controllers ou models aqui, a menos que esta página precise exibir dados dinâmicos.
 
@@ -13,12 +12,12 @@ session_start(); // Inicia a sessão (embora esta página possa não usar direta
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IronZone - Início</title>
-    <link rel="stylesheet" href="tela-inicio.css">
+    <link rel="stylesheet" href="/F-RUM-ACADEMIA/Tela-Inicio/tela-inicio.css">
 </head>
 <body>
 <div class="container">
     <div class="forma">
-        <img src="../img/Imagens-Blog-Lund-Trainers-768x512 (1).png" alt="Treino na academia">
+        <img src="/F-RUM-ACADEMIA/img/Imagens-Blog-Lund-Trainers-768x512 (1).png" alt="Treino na academia">
         <div class="titulo">
             <h1>IronZone</h1>
             <p>Compartilhe treinos e tire dúvidas</p>
@@ -34,6 +33,6 @@ session_start(); // Inicia a sessão (embora esta página possa não usar direta
         <a href="/F-RUM-ACADEMIA/Pagina-de-posts" class="btn">Ver Posts</a>
     </div>
 </div>
-<script src="tela-inicio.js"></script>
+<script src="/F-RUM-ACADEMIA/Tela-Inicio/tela-inicio.js"></script>
 </body>
 </html>

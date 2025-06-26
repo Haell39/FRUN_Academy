@@ -1,5 +1,5 @@
 <?php
-// Cadastro/cadastro.php
+// F-RUM-ACADEMIA/Cadastro/cadastro.php
 
 session_start(); // Inicia a sessão no topo da página para usar $_SESSION
 
@@ -13,7 +13,7 @@ unset($_SESSION['success_message']);
 
 // Não é necessário incluir controllers ou models aqui,
 // pois este arquivo será incluído pelo AuthController::register() no index.php
-// e o controlador já terá instanciado os models e tratado a lógica.
+// e o controlador já terá instanciado os models e tratado a lógica. tetx
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -22,13 +22,14 @@ unset($_SESSION['success_message']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>IronZone - Cadastro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="cadastro.css">
+
+    <link rel="stylesheet" href="/F-RUM-ACADEMIA/Cadastro/cadastro.css">
 </head>
 <body>
 
 <div class="container">
     <div class="forma">
-        <img src="../img/Imagens-Blog-Lund-Trainers-768x512 (1).png" alt="Treino na academia">
+        <img src="/F-RUM-ACADEMIA/img/Imagens-Blog-Lund-Trainers-768x512 (1).png" alt="Treino na academia">
         <div class="titulo">
             <h1>IronZone</h1>
         </div>
@@ -81,6 +82,6 @@ unset($_SESSION['success_message']);
     </div>
 </div>
 
-<script src="cadastro.js"></script>
+<script src="/F-RUM-ACADEMIA/Cadastro/cadastro.js"></script>
 </body>
 </html>

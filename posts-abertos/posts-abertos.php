@@ -1,5 +1,5 @@
 <?php
-// posts-abertos/posts-abertos.php
+// F-RUM-ACADEMIA/posts-abertos/posts-abertos.php
 
 session_start(); // Inicia a sessão no topo da página
 
@@ -209,7 +209,7 @@ $is_author = (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true &
     <?php endif; ?>
 
     <div class="post-header">
-        <img src="../img/Imagens-Blog-Lund-Trainers-768x512 (1).png" alt="avatar" class="avatar">
+        <img src="/F-RUM-ACADEMIA/img/Imagens-Blog-Lund-Trainers-768x512 (1).png" alt="avatar" class="avatar">
         <div>
             <p class="autor-nome"><strong><?php echo htmlspecialchars($post->apelido); ?></strong></p>
             <p class="post-data"><?php echo $post_date_formatted; ?></p>
@@ -242,7 +242,7 @@ $is_author = (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true &
                 foreach ($comentarios as $comentario) {
                     ?>
                     <div class="comment">
-                        <img src="../img/Imagens-Blog-Lund-Trainers-768x512 (1).png" alt="foto" class="foto-comentario">
+                        <img src="/F-RUM-ACADEMIA/img/Imagens-Blog-Lund-Trainers-768x512 (1).png" alt="foto" class="foto-comentario">
                         <div class="texto-comentario">
                             <strong><?php echo htmlspecialchars($comentario->apelido); ?></strong> (<?php echo date('d/m/Y', strtotime($comentario->created_at)); ?>)<br>
                             <?php echo nl2br(htmlspecialchars($comentario->texto)); ?>
@@ -280,6 +280,6 @@ $is_author = (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true &
     </div>
 </div>
 
-<script src="posts-abertos.js"></script>
+<script src="/F-RUM-ACADEMIA/posts-abertos/posts-abertos.js"></script>
 </body>
 </html>

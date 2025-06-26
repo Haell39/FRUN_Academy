@@ -1,5 +1,5 @@
 <?php
-// Perfil/perfil.php
+// F-RUM-ACADEMIA/Perfil/perfil.php
 
 session_start(); // Inicia a sessão no topo da página
 
@@ -29,7 +29,7 @@ $nome_display = htmlspecialchars($user->nome ?? '');
 $apelido_display = htmlspecialchars($user->apelido ?? '');
 $email_display = htmlspecialchars($user->email ?? '');
 $regiao_display = htmlspecialchars($user->regiao ?? ''); // 'País' no seu HTML
-$foto_display = htmlspecialchars($user->foto ?? '../img/Imagens-Blog-Lund-Trainers-768x512 (1).png'); // Default se não tiver foto
+$foto_display = htmlspecialchars($user->foto ?? '/F-RUM-ACADEMIA/img/Imagens-Blog-Lund-Trainers-768x512 (1).png'); // Default se não tiver foto
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -38,7 +38,8 @@ $foto_display = htmlspecialchars($user->foto ?? '../img/Imagens-Blog-Lund-Traine
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil - IronZone</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-    <link rel="stylesheet" href="perfil.css">
+
+    <link rel="stylesheet" href="/F-RUM-ACADEMIA/Perfil/perfil.css">
 </head>
 <body>
 
@@ -144,6 +145,6 @@ $foto_display = htmlspecialchars($user->foto ?? '../img/Imagens-Blog-Lund-Traine
     </div>
 </div>
 
-<script src="perfil.js"></script>
+<script src="/F-RUM-ACADEMIA/Perfil/perfil.js"></script>
 </body>
 </html>
