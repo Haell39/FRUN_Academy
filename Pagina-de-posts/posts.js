@@ -87,7 +87,7 @@ document.addEventListener('click', (e) => {
 
   // **Comentado: Lógica antiga de localStorage removida**
   // localStorage.setItem('postAberto', JSON.stringify(posts[index]));
-  // window.location.href = '../posts-abertos/posts-abertos.html';
+  // window.location.href = '../posts-abertos/posts-abertos.php';
 
   // **Nova abordagem:** Redireciona para a página do post aberto, onde o PHP vai carregar tudo.
   // O JS não vai mais preencher o lightbox na mesma página aqui.
