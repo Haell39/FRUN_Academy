@@ -21,7 +21,7 @@ $perfilController = new PerfilController($pdo);
 // Obtém o caminho da URL (ex: /F-RUM-ACADEMIA/Login/login.php -> /Login/login.php)
 $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// Remove o subdiretório do projeto da URL, se estiver rodando em um subdiretório (como no XAMPP/WAMP)
+// Remove o subdiretório do projeto da URL, se estiver rodando em um subdiretório (como no XAMPP/WAMP ou servidor do PhpStorm)
 // Ajuste 'F-RUM-ACADEMIA' para o nome exato da sua pasta raiz se for diferente na URL
 $base_path = '/F-RUM-ACADEMIA'; // <-- ATENÇÃO: Ajuste esta linha se o nome da sua pasta raiz na URL for diferente!
 if (strpos($request_uri, $base_path) === 0) {
@@ -43,7 +43,8 @@ $id = $segments[2] ?? null; // ID para actions como 'show', 'edit', 'delete'
 switch ($controller_name) {
     case '': // Para a raiz do site, ex: http://localhost/F-RUM-ACADEMIA/
     case 'Tela-Inicio':
-        // A página principal Tela-Inicio/tela-inicio.php
+        // A página principal Tela-Inicio/tela-inicio.php será incluída por aqui.
+        // O HTML da sua Tela de Início será movido para lá.
         include __DIR__ . '/Tela-Inicio/tela-inicio.php';
         break;
 
@@ -84,7 +85,7 @@ switch ($controller_name) {
             $postController->createComment();
         } else {
             // Redireciona para a lista de posts se a URL de post-aberto não tiver ID válido
-            header('Location: ' . $base_path . '/Pagina-de-posts/posts.php');
+            header('Location: ' . $base_path . '/Pagina-de-posts'); // Use /Pagina-de-posts para ir para o index()
             exit;
         }
         break;
@@ -105,7 +106,7 @@ switch ($controller_name) {
         // Página não encontrada (404) ou redirecionar para a página inicial
         header("HTTP/1.0 404 Not Found");
         echo "<h1>404 Not Found</h1><p>A página que você está procurando não existe.</p>";
-        // Ou, redirecionar para a home: header('Location: ' . $base_path . '/Tela-Inicio/tela-inicio.php');
+        // Ou, redirecionar para a home: header('Location: ' . $base_path . '/Tela-Inicio');
         exit;
 }
 ?>
