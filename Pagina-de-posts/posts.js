@@ -1,255 +1,124 @@
-// const postsContainer = document.getElementById('posts-container');
- const modal = document.getElementById('modal-novo-post');
- const btnNovoPost = document.getElementById('btn-novo-post');
- const btnFecharModal = document.getElementById('fechar-modal');
-// const formPost = document.getElementById('formPost');
+// Pagina-de-posts/posts.js
 
-// // Modal de edição
- const modalEditar = document.getElementById('modal-editar-post');
-// const formEditar = document.getElementById('formEditarPost');
- const btnFecharEditar = document.getElementById('fechar-modal-editar');
-// let indiceEdicao = null;
+// Referências aos elementos do DOM
+const modalNovoPost = document.getElementById('modal-novo-post');
+const btnNovoPost = document.getElementById('btn-novo-post');
+const btnFecharNovoPost = document.getElementById('fechar-modal');
 
-// // Modal Lightbox
-// const modalLightbox = document.getElementById('modal-post-lightbox');
-// const lightboxContent = document.getElementById('lightbox-content');
+const modalEditarPost = document.getElementById('modal-editar-post');
+const btnFecharEditarPost = document.getElementById('fechar-modal-editar');
+const formEditarPost = document.getElementById('formEditarPost'); // O formulário de edição
+const editPostIdInput = document.getElementById('edit-post-id'); // Input hidden para o ID
+const editTituloInput = document.getElementById('edit-titulo');   // Input para o título
+const editConteudoTextarea = document.getElementById('edit-conteudo'); // Textarea para o conteúdo
 
-// let posts = [];
+const modalLightbox = document.getElementById('modal-post-lightbox');
+const btnFecharLightbox = document.getElementById('fechar-lightbox');
 
-// Abrir modal novo post
-btnNovoPost.addEventListener('click', () => {
-  modal.style.display = 'block';
+
+// --- Funções para Abrir/Fechar Modais ---
+
+// Abrir modal Novo Post
+if (btnNovoPost) { // Verifica se o botão existe antes de adicionar o listener
+ btnNovoPost.addEventListener('click', () => {
+  modalNovoPost.style.display = 'block';
+ });
+}
+
+// Fechar modal Novo Post
+if (btnFecharNovoPost) {
+ btnFecharNovoPost.addEventListener('click', () => {
+  modalNovoPost.style.display = 'none';
+ });
+}
+
+// Fechar modal Editar Post
+if (btnFecharEditarPost) {
+ btnFecharEditarPost.addEventListener('click', () => {
+  modalEditarPost.style.display = 'none';
+ });
+}
+
+// Fechar modal Lightbox
+if (btnFecharLightbox) {
+ btnFecharLightbox.addEventListener('click', () => {
+  modalLightbox.style.display = 'none';
+ });
+}
+
+// Fechar modais ao clicar fora (no overlay)
+window.addEventListener('click', (e) => {
+ if (e.target === modalNovoPost) modalNovoPost.style.display = 'none';
+ if (e.target === modalEditarPost) modalEditarPost.style.display = 'none';
+ if (e.target === modalLightbox) modalLightbox.style.display = 'none';
 });
 
-// // Fechar modais
- btnFecharModal.addEventListener('click', () => modal.style.display = 'none');
-btnFecharEditar.addEventListener('click', () => modalEditar.style.display = 'none');
+// --- Lógica para o Modal de Edição (para pré-popular o formulário) ---
 
-// window.addEventListener('click', (e) => {
-//   if (e.target === modal) modal.style.display = 'none';
-//   if (e.target === modalEditar) modalEditar.style.display = 'none';
-//   if (e.target === modalLightbox) modalLightbox.style.display = 'none';
-// });
+// Adiciona event listeners aos botões "Editar" que serão gerados pelo PHP
+document.addEventListener('click', (e) => {
+ if (e.target.classList.contains('edit-post-btn')) {
+  const postId = e.target.dataset.id;
+  const postTitulo = e.target.dataset.titulo;
+  const postConteudo = e.target.dataset.conteudo;
 
-// // Formatar data
-// function formatarData(timestamp) {
-//   const data = new Date(timestamp);
-//   return data.toLocaleDateString('pt-BR', {
-//     day: '2-digit',
-//     month: '2-digit',
-//     year: 'numeric'
-//   });
-// }
+  // Preenche o formulário de edição com os dados do post
+  editPostIdInput.value = postId;
+  editTituloInput.value = postTitulo;
+  editConteudoTextarea.value = postConteudo;
 
-// // Criar preview do post
-// function criarPostPreview(titulo, autor, dataTimestamp, index) {
-//   const preview = document.createElement('div');
-//   preview.classList.add('post-preview-card');
-//   preview.id = `post-preview-${index}`;
+  // Define o 'action' do formulário dinamicamente com o ID do post
+  // Isso fará com que o formulário submeta para a rota correta do controlador
+  // Ex: /F-RUM-ACADEMIA/posts-abertos/edit/123
+  formEditarPost.action = `/F-RUM-ACADEMIA/posts-abertos/edit/${postId}`;
 
-//   const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
-//   let imgSrc = '';
+  // Exibe o modal de edição
+  modalEditarPost.style.display = 'block';
+ }
+});
 
-//   // Só mostra foto se o autor for o usuário logado
-//   // if (usuario && (usuario.nome === autor || usuario.apelido === autor)) {
-//   //   imgSrc = usuario.foto || '';
-//   // }
-  
-//   preview.innerHTML = `
-//     <div class="card-header">
-//       ${imgSrc ? `<img src="${imgSrc}" alt="avatar" class="avatar">` : `<i class="bi bi-person-fill avatar"></i>`}
-//       <div class="card-info">
-//         <p class="autor-nome"><strong>${autor}</strong></p>
-//       </div>
-//     </div>
-  
-//     <h3 class="titulo-post">${titulo}</h3>
-//     <button class="ver-btn">Ver Post Completo</button>
-//   `;
+// --- Lógica para o Modal Lightbox (abrir e possivelmente carregar conteúdo via AJAX) ---
 
-//   preview.querySelector('.ver-btn').addEventListener('click', () => {
-//     localStorage.setItem('postAberto', JSON.stringify(posts[index]));
-//     window.location.href = '../posts-abertos/posts-abertos.html';
+// Adiciona event listeners aos botões "Ver Post Completo"
+document.addEventListener('click', (e) => {
+ if (e.target.classList.contains('ver-btn')) {
+  e.preventDefault(); // Impede o link de redirecionar imediatamente
+  const postId = e.target.href.split('/').pop(); // Pega o ID do post da URL do link
 
-//   });
-  
-  
+  // **Comentado: Lógica antiga de localStorage removida**
+  // localStorage.setItem('postAberto', JSON.stringify(posts[index]));
+  // window.location.href = '../posts-abertos/posts-abertos.html';
 
-//   return preview;
-// }
+  // **Nova abordagem:** Redireciona para a página do post aberto, onde o PHP vai carregar tudo.
+  // O JS não vai mais preencher o lightbox na mesma página aqui.
+  // Em vez disso, o link já aponta para a rota PHP que lida com isso.
+  window.location.href = `/F-RUM-ACADEMIA/posts-abertos/show/${postId}`;
 
-// // Abrir post no lightbox
-// function abrirPostEmLightbox(index) {
-//   const post = posts[index];
-//   const data = formatarData(post.data);
-//   //const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-//   //const podeEditar = usuarioLogado && (usuarioLogado.nome === post.autor || usuarioLogado.apelido === post.autor);
+  // Se você QUISER manter a funcionalidade de lightbox na mesma página,
+  // VOCÊ PRECISARIA FAZER UMA REQUISIÇÃO AJAX AQUI para pegar os detalhes do post
+  // e depois injetá-los no 'lightboxContent'.
+  // Isso é mais complexo e pode ser feito depois. Por enquanto, a abordagem é redirecionar.
+  /*
+  // Exemplo de como faria com AJAX (apenas para referência, não implementado totalmente)
+  fetch(`/F-RUM-ACADEMIA/api/post/${postId}`) // Uma API que retorna JSON do post e comentários
+      .then(response => response.json())
+      .then(data => {
+          // Preencher lightboxContent com os dados (data.post, data.comentarios)
+          // modalLightbox.style.display = 'flex';
+      })
+      .catch(error => console.error('Erro ao carregar post:', error));
+  */
+ }
+});
 
-//   lightboxContent.innerHTML = `
-//     <button id="fechar-lightbox" class="close-btn">Fechar</button>
-//     <h2>${post.titulo}</h2>
-//     <p class="meta"><strong>${post.autor}</strong> | ${data}</p>
-//     <div class="post-content"><p>${post.conteudo}</p></div>
-//     <div class="actions">
-//       ${podeEditar ? `
-//         <button class="editar-btn">Editar</button>
-//         <button class="excluir-btn delete-btn">Excluir</button>
-//       ` : ''}
-//     </div>
-//     <div class="comments-section">
-//       <h3>Comentários</h3>
-//       <div class="comments-list"></div>
-//       <form class="comment-form">
-//         <textarea placeholder="Escreva um comentário..." required></textarea>
-//         <button type="submit">Enviar</button>
-//       </form>
-//     </div>
-//   `;
 
-//   const commentsList = lightboxContent.querySelector('.comments-list');
-//   const commentForm = lightboxContent.querySelector('.comment-form');
+// As funções de salvamento/carregamento de posts no localStorage e
+// a renderização completa da lista de posts pelo JS foram removidas,
+// pois agora o PHP é responsável por isso.
 
-//   function renderizarComentarios() {
-//     commentsList.innerHTML = '';
-//     const comentarios = post.comentarios || [];
-//     comentarios.forEach((comentario, i) => {
-//       const div = document.createElement('div');
-//       div.classList.add('comment');
-//       let imgSrc = '';
+// As funções de comentário no JS também seriam simplificadas,
+// submetendo o formulário de comentário para uma rota PHP.
+// A exibição dos comentários seria feita pelo PHP na página do post.
 
-//       // if (post.comentariosAutor && post.comentariosAutor[i] === usuarioLogado?.apelido) {
-//       //   imgSrc = usuarioLogado?.foto || '';
-//       // }
-
-//       div.innerHTML = `
-//         ${imgSrc ? `<img src="${imgSrc}" alt="foto" class="foto-comentario">` : ''}
-//         <div class="texto-comentario">${comentario}</div>
-//       `;
-//       commentsList.appendChild(div);
-//     });
-//   }
-
-//   renderizarComentarios();
-
-//   commentForm.addEventListener('submit', e => {
-//     e.preventDefault();
-//     const texto = commentForm.querySelector('textarea').value.trim();
-//     if (!texto) return alert('Comentário vazio não é permitido.');
-
-//     if (!post.comentarios) post.comentarios = [];
-//     if (!post.comentariosAutor) post.comentariosAutor = [];
-//     if (!post.comentariosFoto) post.comentariosFoto = [];
-
-//     post.comentarios.push(texto);
-//     post.comentariosAutor.push(usuarioLogado.apelido);
-//     post.comentariosFoto.push(usuarioLogado.foto);
-
-//     salvarPosts();
-//     renderizarComentarios();
-//     commentForm.reset();
-//   });
-
-//   const btnEditar = lightboxContent.querySelector('.editar-btn');
-//   if (btnEditar) {
-//     btnEditar.addEventListener('click', () => {
-//       iniciarEdicao(index);
-//       modalLightbox.style.display = 'none';
-//     });
-//   }
-
-//   const btnExcluir = lightboxContent.querySelector('.excluir-btn');
-//   if (btnExcluir) {
-//     btnExcluir.addEventListener('click', () => {
-//       if (confirm('Deseja realmente excluir este post?')) {
-//         posts.splice(index, 1);
-//         salvarPosts();
-//         renderizarPosts();
-//         modalLightbox.style.display = 'none';
-//       }
-//     });
-//   }
-
-//   modalLightbox.style.display = 'flex';
-// }
-
-// // Fechar lightbox com botão
-// document.addEventListener('click', (e) => {
-//   if (e.target.id === 'fechar-lightbox') {
-//     modalLightbox.style.display = 'none';
-//   }
-// });
-
-// // Iniciar edição
-// function iniciarEdicao(index) {
-//   const post = posts[index];
-//   indiceEdicao = index;
-//   formEditar.titulo.value = post.titulo;
-//   formEditar.conteudo.value = post.conteudo;
-//   modalEditar.style.display = 'block';
-// }
-
-// // Salvar edição
-// formEditar.addEventListener('submit', e => {
-//   e.preventDefault();
-//   const novoTitulo = formEditar.titulo.value.trim();
-//   const novoConteudo = formEditar.conteudo.value.trim();
-//   if (!novoTitulo || !novoConteudo) {
-//     alert('Preencha todos os campos!');
-//     return;
-//   }
-//   posts[indiceEdicao].titulo = novoTitulo;
-//   posts[indiceEdicao].conteudo = novoConteudo;
-//   posts[indiceEdicao].data = Date.now();
-//   salvarPosts();
-//   renderizarPosts();
-//   modalEditar.style.display = 'none';
-// });
-
-// // Novo post
-// formPost.addEventListener('submit', e => {
-//   e.preventDefault();
-//   const titulo = formPost.titulo.value.trim();
-//   const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
-//   // if (!usuario) return alert('Usuário não está logado.');
-//   const autor = usuario.apelido;
-//   const conteudo = formPost.conteudo.value.trim();
-//   if (!titulo || !autor || !conteudo) {
-//     alert('Preencha todos os campos');
-//     return;
-//   }
-//   posts.unshift({
-//     titulo,
-//     autor,
-//     conteudo,
-//     data: Date.now(),
-//     comentarios: [],
-//     comentariosAutor: [],
-//     comentariosFoto: []
-//   });
-//   salvarPosts();
-//   renderizarPosts();
-//   formPost.reset();
-//   modal.style.display = 'none';
-// });
-
-// // Salvar e carregar posts
-// function salvarPosts() {
-//   localStorage.setItem('posts', JSON.stringify(posts));
-// }
-// function carregarPosts() {
-//   const dados = localStorage.getItem('posts');
-//   if (dados) posts = JSON.parse(dados);
-// }
-
-// // Renderizar todos os posts
-// function renderizarPosts() {
-//   postsContainer.innerHTML = '';
-//   posts.forEach((post, index) => {
-//     const preview = criarPostPreview(post.titulo, post.autor, post.data, index);
-//     postsContainer.appendChild(preview);
-//   });
-// }
-
-// // Inicializar
-// carregarPosts();
-// renderizarPosts();
+// Limpeza e inicialização podem ser feitas pelo PHP ou mantendo as partes relevantes aqui.
+// As partes comentadas do seu código original podem ser removidas.
