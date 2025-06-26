@@ -1,0 +1,192 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #202020;
+    
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+  }
+  
+
+  
+  .container {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+  }
+  
+  .forma {
+    width: 100vw;
+    min-width: 600px;
+    height: 100%;
+    clip-path: polygon(0 0, 62% 0, 43% 100%, 0% 100%);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  
+  .forma img {
+    width: 70%;
+    height: 100%;
+    transition: transform 0.5s ease;
+  }
+  
+  .forma img:hover {
+    transform: scale(1.05);
+  }
+  
+  .titulo {
+    position: absolute;
+    top: 20%;
+    left: 32%;
+    transform: translateY(-50%);
+    z-index: 1;
+    text-align: left;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+  
+  .titulo h1 {
+    font-size: 6rem;
+    margin: 0;
+    color: rgb(149, 6, 6);
+  }
+  
+
+  
+  .grade {
+    width: 49%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cadastro-grade {
+    max-width: 300px;
+    margin: 15%;
+    padding: 30px;
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .titulo-cadastro {
+    color: rgb(149, 6, 6);
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  .Dados {
+    width: 200px;
+    margin-top: 15px;
+    text-align: left;
+    margin-bottom: -5px;
+  }
+  
+  input {
+    width: calc(100% - 12px);
+    margin: 8px 0;
+    padding: 10px;
+    border: 1px;
+    border-radius: 5px;
+  }
+  
+  .botao {
+    display: block;
+    width: 35vh;
+    padding: 5px;
+    background: rgb(149, 6, 6);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2%;
+    border: none;
+    font-size: medium;
+    box-sizing: border-box;
+    border-radius: 5px;
+   margin-bottom: 3%;
+  }
+  
+  .botao:hover {
+    transform: scale(1.02);
+  }
+  
+  
+  
+  .pagina-login {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-left: 16%;
+  }
+  .pagina-login:hover {
+    text-decoration: underline;
+  }
+  .termos {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    margin: 5% 0;
+  }
+  
+  .termos input {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 35vh;
+    color: black;
+  }
+  
+  .input-group-text {
+    position: absolute;
+    margin-right: 5%;
+    right: 0;
+    top: 30%;
+    cursor: pointer;
+    color: #555;
+  }
+  
+  .input-group-text i {
+    font-size: 1rem;
+  }
+  
+  @media screen and (max-width: 800px) {
+    body {
+      flex-direction: column;
+    }
+  
+    .titulo h1 {
+      font-size: 40px;
+      margin-top: 80vw;
+      margin-left: 5vh;
+    }
+  
+    .titulo p {
+      font-size: 18px;
+      margin-left: 5vh;
+    }
+  
+    .forma {
+      width: 100vw;
+      height: auto;
+      clip-path: none;
+    }
+  
+    .forma img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  

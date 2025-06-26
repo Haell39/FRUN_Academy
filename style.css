@@ -1,0 +1,48 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #121212;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  
+  #loading-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #121212;
+    color: #fff;
+  }
+  
+  .logo {
+    font-size: 3em;
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+    letter-spacing: 2px;
+    color: rgb(149, 6, 6);
+  }
+  
+  .spinner {
+    margin-top: 20px;
+    width: 40px;
+    height: 40px;
+    border: 5px solid #ffffff33;
+    border-top: 5px solid rgb(149, 6, 6);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  

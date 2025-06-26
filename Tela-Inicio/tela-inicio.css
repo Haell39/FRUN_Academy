@@ -1,0 +1,151 @@
+/* Fundo com animação de troca de cor */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #202020;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100vh;
+}
+
+
+/* Container principal */
+.container {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+}
+
+.forma {
+  width: 100vw; 
+  min-width: 600px; 
+  height: 100%;
+  clip-path: polygon(0 0, 62% 0, 43% 100%, 0% 100%);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;  
+}
+.forma img {
+  width: 70%;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+.forma img:hover{
+  transform: scale(1.05);
+}
+/* Título sobre a imagem */
+.titulo {
+  position: absolute;
+  top: 20%;
+  left: 33%;
+  transform: translateY(-50%);
+  z-index: 1;
+  text-align: left;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.titulo h1 {
+  font-size: 6rem;
+  margin: 0;
+  color: rgb(149, 6, 6);
+  
+}
+
+.titulo p {
+  font-size: 1.5rem;
+  margin-top: 2px;
+}
+
+/* Seção da direita */
+.lol {
+  flex: 1;
+  min-width: 300px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.lol h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.lol p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.botoes {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  background-color: #d1002f;
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #a00025;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  .titulo h1 {
+    font-size: 40px;
+    margin-top: 80vw;
+    margin-left: 5vh;
+  }
+
+  .titulo p {
+    font-size: 18px;
+    margin-left: 5vh;
+  }
+
+  .lol h1 {
+    font-size: 24px;
+  }
+
+  .lol p {
+    font-size: 16px;
+  }
+
+  .botoes {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 150px;
+    text-align: center;
+  }
+  .forma {
+    width: 100vw;
+    min-width: unset; /* remove o mínimo para poder encolher */
+    height: auto;
+    clip-path: none; /* opcional: tira o corte para não cortar a imagem em telas pequenas */
+  }
+
+  .forma img {
+    width: 100%;
+    height: auto;
+  }
+}

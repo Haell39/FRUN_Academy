@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IronZone</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="forma">
+      <img src="../img/Imagens-Blog-Lund-Trainers-768x512 (1).png" alt="Treino na academia">
+      <div class="titulo">
+        <h1>IronZone</h1>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="grade">
+    <div class="cadastro-grade">
+      <h2 class="titulo-cadastro">Cadastro</h2>
+
+      <p class="Dados">Nome:</p>
+      <input type="text" name="nome" placeholder="Digite seu nome" required>
+
+      <p class="Dados">Email:</p>
+      <input type="email" name="email" placeholder="Digite seu email" required>
+
+      <p class="Dados">Senha:</p>
+      <div class="password-container">
+        <input id="senha" type="password" name="senha" placeholder="Crie uma senha" required>
+        <span class="input-group-text" onclick="toggleSenha('senha', this)">
+          <i class="bi bi-eye"></i>
+        </span>
+      </div>
+
+      <p class="Dados">Confirmar Senha:</p>
+      <div class="password-container">
+        <input id="confirmarSenha" type="password" name="confirmarSenha" placeholder="Repita a senha" required>
+        <span class="input-group-text" onclick="toggleSenha('confirmarSenha', this)">
+          <i class="bi bi-eye"></i>
+        </span>
+      </div>
+
+  
+
+      <a href="/Login/login.html" class="botao">Cadastrar</a>
+
+      <a class="pagina-login" href="../Login/login.html">Já tem uma conta? Faça login</a>
+    </div>
+  </div>
+
+  <script src="cadastro.js"></script>
+</body>
+</html>
